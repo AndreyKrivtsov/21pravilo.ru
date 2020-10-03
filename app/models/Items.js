@@ -7,8 +7,8 @@ class Item extends BaseModel {
         this.items = this.db.collection('items')
     }
 
-    getItems(handler) {
-        this.items.find({}).toArray((err, items) => {
+    async getItems(handler) {
+        await this.items.find({}).toArray((err, items) => {
             handler(err, items)
         })
     }
@@ -24,6 +24,12 @@ class Item extends BaseModel {
             return result
         }
         return {}
+    }
+
+    getVoteItems(handler) {
+        this.items.find({}).toArray((err, items) => {
+            handler(err, items)
+        })
     }
 }
 

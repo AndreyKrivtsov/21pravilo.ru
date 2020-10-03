@@ -27,23 +27,54 @@ app.options('*', (req, res) => {
   res.send('ok');
 });
 
+
+
+
 app.get('/items', (req, res) => {
   let item = new Items()
   item.getItems((err, items) => {
-    if (err) console.log(err)
-    else res.json(items)
+    // if (err) {
+    //   console.log(err)
+    //   res.json(items)
+    // }
+    // else res.json(items)
+    console.log(items)
+    res.send(JSON.stringify({
+      items
+    }));
   })
+
+  //res.send('sdfsdf')
 })
 
 app.put('/items', (req, res) => {
   console.log(req.body)
   let item = new Items()
   let result = item.setItem(req.body)
-  res.json(result)
+  //res.json(result)
   res.send(JSON.stringify({
     data: result
   }));
 })
+
+app.get('/voteitems', (req, res) => {
+  let item = new Items()
+  item.getVoteItems((err, items) => {
+    console.log(items)
+
+    res.send(JSON.stringify({
+      data: items
+    }));
+  })
+
+  //res.json(result)
+  // res.send(JSON.stringify({
+  //   data: items
+  // }));
+})
+
+
+
 
 app.get('/', (req, res) => {
   console.error('route /');

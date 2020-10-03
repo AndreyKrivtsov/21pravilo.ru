@@ -1,17 +1,15 @@
 import http from '../plugins/Http'
 
 export default {
-    getRandomItems() {
-        http('http://localhost/api/items')
-            .then((data) => {
-                console.log(data);
-            });
+    async getTopItems() {
+        return await http('http://localhost/api/items', 'GET')
     },
 
-    setItem(item) {
-        http('http://localhost/api/items', 'PUT', item)
-            .then((data) => {
-                console.log(data);
-            });
-    }
+    async setItem(item) {
+        return await http('http://localhost/api/items', 'PUT', item)
+    },
+
+    async getVoteItems() {
+        return await http('http://localhost/api/voteitems', 'GET')
+    },
 }
