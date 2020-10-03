@@ -1,5 +1,5 @@
-import { request } from 'express'
 import BaseModel from './BaseModel.js'
+import Mongo from 'mongodb'
 
 class Item extends BaseModel {
     constructor() {
@@ -7,21 +7,23 @@ class Item extends BaseModel {
         this.items = this.db.collection('items')
     }
 
-    async getItems(handler) {
-        await this.items.find({}).toArray((err, items) => {
+    getItems(handler) {
+        this.items.find({}).toArray((err, items) => {
             handler(err, items)
         })
     }
 
-    async setItem(item) {
+    setItem(item) {
         if (item.name) {
             let data = {
                 name: item.name,
-                like: 0,
-                dislike: 0,
+                likes: 0,
+                dislikes: 0,
+                date: Date.now()
             }
-            const result = await this.items.insertOne(item)
-            return result
+            this.items.insertOne(data, (err, res) => {
+                if (err) throw err;
+            })
         }
         return {}
     }
@@ -30,6 +32,26 @@ class Item extends BaseModel {
         this.items.find({}).toArray((err, items) => {
             handler(err, items)
         })
+    }
+
+    setItemLike(data, handler) {
+        if (data.id) {
+            this.items.updateOne({ '_id' : Mongo.ObjectID(data.id) }, { $inc: { likes: 1 } }, (err, res) => {
+                handler(err, res)
+                if (err) throw err;
+            })
+        }
+        return {}
+    }
+
+    setItemDislike(data, handler) {
+        if (data.id) {
+            this.items.updateOne({ '_id' : Mongo.ObjectID(data.id) }, { $inc: { dislikes: 1 } }, (err, res) => {
+                handler(err, res)
+                if (err) throw err;
+            })
+        }
+        return {}
     }
 }
 

@@ -1,9 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import Db from './core/Db.js'
-import Items from './models/Items.js'
-
-new Db()
+import route from './core/routes.js'
 
 const app = express()
 const port = 4700
@@ -11,9 +8,7 @@ const host = 'localhost'
 
 app.use(bodyParser.json())
 
-
 app.use(function (req, res, next) {
-  console.log(req.path)
   res.set('Access-Control-Allow-Origin', '*')
   res.set('Access-Control-Allow-Methods', 'GET, OPTIONS, PUT, POST')
   res.set('Access-Control-Allow-Headers', 'Content-Type')
@@ -21,63 +16,15 @@ app.use(function (req, res, next) {
   next()
 });
 
+app.use('/', route);
+
 app.options('*', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set("Access-Control-Allow-Headers", "Content-Type");
   res.send('ok');
 });
 
-
-
-
-app.get('/items', (req, res) => {
-  let item = new Items()
-  item.getItems((err, items) => {
-    // if (err) {
-    //   console.log(err)
-    //   res.json(items)
-    // }
-    // else res.json(items)
-    console.log(items)
-    res.send(JSON.stringify({
-      items
-    }));
-  })
-
-  //res.send('sdfsdf')
-})
-
-app.put('/items', (req, res) => {
-  console.log(req.body)
-  let item = new Items()
-  let result = item.setItem(req.body)
-  //res.json(result)
-  res.send(JSON.stringify({
-    data: result
-  }));
-})
-
-app.get('/voteitems', (req, res) => {
-  let item = new Items()
-  item.getVoteItems((err, items) => {
-    console.log(items)
-
-    res.send(JSON.stringify({
-      data: items
-    }));
-  })
-
-  //res.json(result)
-  // res.send(JSON.stringify({
-  //   data: items
-  // }));
-})
-
-
-
-
 app.get('/', (req, res) => {
-  console.error('route /');
   res.status(400).send('Not found');
 })
 

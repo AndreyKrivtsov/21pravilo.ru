@@ -12,4 +12,12 @@ export default {
     async getVoteItems() {
         return await http('http://localhost/api/voteitems', 'GET')
     },
+
+    async setLike(data) {
+        return await http('http://localhost/api/voteitems/like', 'PUT', data)
+    },
+
+    async setDislike(data) {
+        return await http('http://localhost/api/voteitems/dislike', 'PUT', data)
+    },
 }
