@@ -1,9 +1,11 @@
-$color1Primary: #134E68;
+//$color1Primary: #134E68;
 $color1Secondary: #3F6678;
 $color1Light: #b9b9b9;
 
 $color2Primary: #A4641C;
 $color2Light: #FED3A3;
+
+$color1Primary: #448aff;
 
 $paddingInline: 10px;
 
@@ -13,7 +15,8 @@ BODY {
 }
 
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    //font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;

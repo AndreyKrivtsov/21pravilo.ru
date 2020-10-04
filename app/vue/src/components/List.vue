@@ -4,7 +4,7 @@
 
         <div v-for="(item, i) in voteList" :key="item" class="list">
             <span>{{ i + 1 }}. </span>
-            <span class="ml-1">Правило {{ item.name }}</span>
+            <span class="ml-1">{{ item.name }}</span>
             <div class="text-right">
                 <span>Лайки: {{ item.likes }}</span>
                 <span>Дизы: {{ item.dislikes }}</span>
@@ -31,7 +31,7 @@ export default {
     methods: {
         getVoteList() {
             ApiItems.getTopItems().then((data) => {
-                this.voteList = data.items;
+                this.voteList = data;
             });
         },
     },

@@ -22,47 +22,28 @@ export default {
     data() {
         return {
             randomList: Array,
+            token: String,
         };
     },
     methods: {
         like(item) {
-            ItemsApi.setLike({
-                id: item._id
-            })
+            ItemsApi.setLike({ id: item._id, token: this.token })
         },
 
         dislike(item) {
-            ItemsApi.setDislike({
-                id: item._id
-            })
+            ItemsApi.setDislike({ id: item._id, token: this.token })
         },
 
         getVoteItems() {
             ItemsApi.getVoteItems()
-            .then(data => { this.randomList = data.data })
+            .then(data => { 
+                this.randomList = data.items
+                this.token = data.token
+            })
         },
     },
     mounted() {
         this.getVoteItems();
-
-        // this.randomList = [
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        //     { id: "asfacarv", text: "Еще одно очередное правило" },
-        // ];
     },
 };
 </script>

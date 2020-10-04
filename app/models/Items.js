@@ -7,51 +7,48 @@ class Item extends BaseModel {
         this.items = this.db.collection('items')
     }
 
-    getItems(handler) {
-        this.items.find({}).toArray((err, items) => {
-            handler(err, items)
-        })
+    async getItems() {
+        let result = await this.items.find({}).toArray()
+        return result
     }
 
-    setItem(item) {
+    async setItem(item) {
         if (item.name) {
             let data = {
                 name: item.name,
                 likes: 0,
                 dislikes: 0,
+                shows: 0,
                 date: Date.now()
             }
-            this.items.insertOne(data, (err, res) => {
-                if (err) throw err;
-            })
+            let result = await this.items.insertOne(data)
+            return result
         }
         return {}
     }
 
-    getVoteItems(handler) {
-        this.items.find({}).toArray((err, items) => {
-            handler(err, items)
-        })
+    async getVoteItems() {
+        return await this.items.find({}).toArray()
     }
 
-    setItemLike(data, handler) {
-        if (data.id) {
-            this.items.updateOne({ '_id' : Mongo.ObjectID(data.id) }, { $inc: { likes: 1 } }, (err, res) => {
-                handler(err, res)
-                if (err) throw err;
-            })
+    async setItemLike(id) {
+        if (id) {
+            return await this.items.updateOne({ '_id' : Mongo.ObjectID(id) }, { $inc: { likes: 1 } })
         }
         return {}
     }
 
-    setItemDislike(data, handler) {
-        if (data.id) {
-            this.items.updateOne({ '_id' : Mongo.ObjectID(data.id) }, { $inc: { dislikes: 1 } }, (err, res) => {
-                handler(err, res)
-                if (err) throw err;
-            })
+    async setItemDislike(id) {
+        if (id) {
+            return await this.items.updateOne({ '_id' : Mongo.ObjectID(id) }, { $inc: { dislikes: 1 } })
         }
         return {}
+    }
+
+    async increaseShowsItem(id) {
+        if (id) {
+            this.items.updateOne({ '_id' : Mongo.ObjectID(id) }, { $inc: { shows: 1 } })
+        }
     }
 }
 

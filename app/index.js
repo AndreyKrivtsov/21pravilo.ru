@@ -1,6 +1,9 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import route from './core/routes.js'
+import Db from './core/Db.js'
+
+new Db()
 
 const app = express()
 const port = 4700
