@@ -1,0 +1,22 @@
+{
+  "name": "21pravilo.ru",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sloc-app": "sloc ./ --exclude node_modules --exclude vue --format cli-table",
+    "sloc-vue": "sloc ./vue --exclude node_modules --format cli-table"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,44 @@
+version: '3.3'
+
+services:
+
+  21p_nginx:
+    build:
+      context: ./
+      dockerfile: ./nginx/Dockerfile
+    volumes:
+      - ./../app:/app:cached
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./logs/nginx:/var/log/nginx
+    expose:
+      - 80
+    ports:
+      - 80:80
+      - 81:81
+    env_file:
+      - ./env/env
+    restart: "no"
+
+  mongo:
+    image: mongo
+    volumes:
+      - "mongodb_data:/mongodb/db"
+    restart: "no"
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Toor753
+
+  mongo-express:
+    image: mongo-express
+    restart: "no"
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: Toor753
+  
+
+volumes:
+  mongodb_data:
