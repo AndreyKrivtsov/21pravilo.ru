@@ -18,7 +18,7 @@ class Db {
         if (!this.statusConnect) {
             client.connect('mongodb://127.0.0.1:27017/', {
                 useNewUrlParser: true,
-                auth: {username: "root", password: "Toor753"},
+                //auth: {username: "root", password: "root"},
               }, (err, db) => {
                 if (err) {
                     throw err
