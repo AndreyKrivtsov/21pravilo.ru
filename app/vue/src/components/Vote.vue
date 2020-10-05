@@ -22,6 +22,7 @@ export default {
     data() {
         return {
             randomList: Array,
+            timeout: Number
         };
     },
     methods: {

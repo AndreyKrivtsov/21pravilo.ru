@@ -13,7 +13,9 @@
   },
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sloc-app": "sloc ./ --exclude node_modules --exclude vue --format cli-table",
+    "sloc-vue": "sloc ./vue --exclude node_modules --format cli-table"
   },
   "author": "",
   "license": "ISC"

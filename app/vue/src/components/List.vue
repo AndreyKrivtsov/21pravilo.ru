@@ -5,10 +5,11 @@
         <div v-for="(item, i) in voteList" :key="item" class="list">
             <span>{{ i + 1 }}. </span>
             <span class="ml-1">{{ item.name }}</span>
+            <hr class="mt-3 mb-0">
             <div class="text-right">
-                <span>Лайки: {{ item.likes }}</span>
-                <span>Дизы: {{ item.dislikes }}</span>
-                <span>Показы: {{ item.shows }}</span>
+                <span class="mr-1">Лайков: {{ item.likes }}</span> |
+                <span class="mr-1">Дизлайков: {{ item.dislikes }}</span> |
+                <span class="mr-1">Показов: {{ item.shows }}</span>
             </div>
         </div>
     </div>
@@ -45,6 +46,6 @@ export default {
 <style>
 .list {
     text-align: left;
-    padding: 20px;
+    padding: 30px 20px 20px 20px;
 }
 </style>

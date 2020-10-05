@@ -1,57 +1,62 @@
-//$color1Primary: #134E68;
-$color1Secondary: #3F6678;
-$color1Light: #b9b9b9;
+// //$color1Primary: #134E68;
+// $color1Secondary: #3F6678;
+// $color1Light: #b9b9b9;
 
-$color2Primary: #A4641C;
-$color2Light: #FED3A3;
+// $color2Primary: #A4641C;
+// $color2Light: #FED3A3;
 
-$color1Primary: #448aff;
+// $color1Primary: #448aff;
 
-$paddingInline: 10px;
+// $paddingInline: 10px;
 
-BODY {
-    margin: 0;
-    padding: 0;
-}
+// BODY {
+//     margin: 0;
+//     padding: 0;
+// }
 
-#app {
-    //font-family: Avenir, Helvetica, Arial, sans-serif;
-    font-family: Roboto, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-}
+// #app {
+//     //font-family: Avenir, Helvetica, Arial, sans-serif;
+//     font-family: Roboto, sans-serif;
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+//     text-align: center;
+//     color: #2c3e50;
+// }
 
-.input {
-    border: 1px solid $color1Light;
-    border-radius: 0.2rem;
-    padding: $paddingInline - 1;
+// .input {
+//     border: 1px solid $color1Light;
+//     border-radius: 0.2rem;
+//     padding: $paddingInline - 1;
 
-    &:focus {
-        border: 1px solid $color1Primary;
-        outline: none;
-    }
-}
+//     &:focus {
+//         border: 1px solid $color1Primary;
+//         outline: none;
+//     }
+// }
 
-.btn {
-    padding: $paddingInline;
-    border: none;
-    border-radius: 0.2rem;
+// .btn {
+//     padding: $paddingInline;
+//     border: none;
+//     border-radius: 0.2rem;
 
-    &:focus {
-        border: none;
-        outline: none;
-    }
-}
+//     &:focus {
+//         border: none;
+//         outline: none;
+//     }
 
-.btn-primary {
-    background-color: $color1Primary;
-    color: #EEE;
+//     &:disabled {
+//         background-color: #DDD;
+//         color: #999;
+//     }
+// }
 
-    &:active {
-        background-color: $color1Secondary;
-    }
-}
+// .btn-primary {
+//     background-color: $color1Primary;
+//     color: #EEE;
 
-.text-light { color: $color1Light }
+//     &:active {
+//         background-color: $color1Secondary;
+//     }
+// }
+
+// .text-light { color: $color1Light }

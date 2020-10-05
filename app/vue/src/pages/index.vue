@@ -1,13 +1,5 @@
 <template>
     <div>
-        <div>
-            <router-link to="/vote">
-                <button class="btn header-btn btn-primary">
-                    ПРОГОЛОСОВАТЬ ЗА НОВЫЕ ПРАВИЛА
-                </button>
-            </router-link>
-        </div>
-
         <List />
 
         <div class="add-button">
@@ -30,11 +22,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header-btn {
-    width: 100%;
-    border-radius: 0;
-}
-
 .add-button {
     margin-top: 50px;
 }

@@ -1,4 +1,4 @@
-import Db from './../core/Db.js'
+import Db from '../core/Db.js'
 
 class BaseModel {
     constructor(client) {

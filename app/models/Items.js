@@ -27,8 +27,11 @@ class Item extends BaseModel {
         return {}
     }
 
-    async getVoteItems() {
-        return await this.items.find({}).toArray()
+    async getVoteItems(limit) {
+        let result = await this.items.find({})
+        .limit(limit)
+        .toArray()
+        return result
     }
 
     async setItemLike(id) {

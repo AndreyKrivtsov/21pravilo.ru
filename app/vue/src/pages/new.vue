@@ -1,5 +1,6 @@
 <template>
     <div class="new">
+        <h1>Добавьте новое правило</h1>
         <div class="new-input">
             <input
                 v-model="name"

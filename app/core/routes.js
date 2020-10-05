@@ -1,8 +1,6 @@
 import express from 'express'
-import bodyParser from 'body-parser'
-import ItemController from './../controllers/ItemConroller.js'
+import ItemController from '../controllers/ItemConroller.js'
 
-import Items from './../models/Items.js'
 import cacheAdapter from './cacheAdapter.js'
 let cache = new cacheAdapter()
 setInterval(() => console.log(cache.hash), 20000)
