@@ -1,11 +1,11 @@
 <template>
-    <div v-if="$router.currentRoute" class="mt-3">
-        <h1>Главные правила</h1>
-
+    <div class="mt-4">
         <div v-for="(item, i) in voteList" :key="item" class="list">
-            <span>{{ i + 1 }}. </span>
-            <span class="ml-1">{{ item.name }}</span>
-            <hr class="mt-3 mb-0">
+            <h4 class="d-inline m-0 p-0">
+                <span class="badge badge-secondary mr-3">{{ i + 1 }}</span>
+                <span class="cursive">{{ item.name }}</span>
+            </h4>
+            <hr class="mt-2 mb-0">
             <div class="text-right">
                 <span class="mr-1">Лайков: {{ item.likes }}</span> |
                 <span class="mr-1">Дизлайков: {{ item.dislikes }}</span> |
@@ -43,9 +43,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .list {
     text-align: left;
-    padding: 30px 20px 20px 20px;
+    padding: 30px 20px 10px 20px;
+}
+
+.cursive {
+    font-family: cursive;
 }
 </style>

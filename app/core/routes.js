@@ -8,8 +8,7 @@ setInterval(() => console.log(cache.hash), 20000)
 let router = express.Router()
 
 router.use(function timeLog(req, res, next) {
-    console.log('Time: ', Date.now());
-    console.log('Path: ', req.path)
+    console.log('[router] Time: ', Date.now(), ' Path: ', req.path);
     next();
 });
 
