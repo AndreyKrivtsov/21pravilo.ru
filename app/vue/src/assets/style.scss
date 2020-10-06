@@ -1,4 +1,4 @@
-// //$color1Primary: #134E68;
+//$color1Primary: #134E68;
 // $color1Secondary: #3F6678;
 // $color1Light: #b9b9b9;
 
@@ -7,7 +7,11 @@
 
 // $color1Primary: #448aff;
 
-// $paddingInline: 10px;
+$paddingInline: 8px;
+
+:root {
+    --primary: #0776A0;
+}
 
 // BODY {
 //     margin: 0;
@@ -15,12 +19,14 @@
 // }
 
 #app {
-    //font-family: Avenir, Helvetica, Arial, sans-serif;
+    //@at-root: Avenir, Helvetica, Arial, sans-serif;
     font-family: Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    width: 100vw;
+    // height: 100vh;
 }
 
 // .input {
@@ -34,29 +40,34 @@
 //     }
 // }
 
-// .btn {
-//     padding: $paddingInline;
-//     border: none;
-//     border-radius: 0.2rem;
+.btn {
+    padding: $paddingInline;
+    border: none;
+    border-radius: 0.2rem;
 
-//     &:focus {
-//         border: none;
-//         outline: none;
-//     }
+    &:focus {
+        border: none;
+        outline: none;
+    }
 
-//     &:disabled {
-//         background-color: #DDD;
-//         color: #999;
-//     }
-// }
+    &:hover {
+        background-color: var(--primary);
+        box-shadow: 0 0 4px #333;
+    }
 
-// .btn-primary {
-//     background-color: $color1Primary;
-//     color: #EEE;
+    &:disabled {
+        background-color: #DDD;
+        color: #999;
+    }
+}
 
-//     &:active {
-//         background-color: $color1Secondary;
-//     }
-// }
+.btn-primary {
+    background-color: var(--primary);
+    color: #EEE;
+
+    &:active {
+        background-color: var(--primary);
+    }
+}
 
 // .text-light { color: $color1Light }
