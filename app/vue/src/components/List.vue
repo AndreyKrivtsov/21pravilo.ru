@@ -1,11 +1,9 @@
 <template>
-    <div class="mt-5">
-        <h1>Главные правила</h1>
-
+    <div class="mt-4">
         <div v-for="(item, i) in voteList" :key="item" class="list">
             <h4 class="d-inline m-0 p-0">
                 <span class="badge badge-secondary mr-3">{{ i + 1 }}</span>
-                <span>{{ item.name }}</span>
+                <span class="cursive">{{ item.name }}</span>
             </h4>
             <hr class="mt-2 mb-0">
             <div class="text-right">
@@ -48,6 +46,10 @@ export default {
 <style lang="scss" scoped>
 .list {
     text-align: left;
-    padding: 50px 20px 10px 20px;
+    padding: 30px 20px 10px 20px;
+}
+
+.cursive {
+    font-family: cursive;
 }
 </style>
