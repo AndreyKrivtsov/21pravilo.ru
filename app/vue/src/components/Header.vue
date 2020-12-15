@@ -1,17 +1,28 @@
 <template>
     <div class="header">
-        <div class="header-image">
+        <!-- <div class="header-image">
             <div class="header-image-title">Это главный текст</div>
-        </div>
+        </div> -->
         <!-- <img src="./../assets/picture.jpg" /> -->
 
         <router-link to="/vote">
-            <button class="btn header-btn btn-primary">
+            <WidthButton>
                 ПРИНЯТЬ УЧАСТИЕ В ГОЛОСОВАНИИ
-            </button>
+            </WidthButton>
         </router-link>
     </div>
 </template>
+
+<script>
+import WidthButton from "./ui/WidthButton.vue";
+
+export default {
+    name: 'Header',
+    components: {
+        WidthButton
+    }
+}
+</script>
 
 <style lang="scss" scoped>
 .header {
@@ -28,11 +39,6 @@
             color: #EEE;
             text-transform: uppercase;
         }
-    }
-
-    .header-btn {
-        width: 100%;
-        border-radius: 0;
     }
 }
 </style>

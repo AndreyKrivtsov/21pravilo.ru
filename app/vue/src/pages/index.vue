@@ -5,7 +5,7 @@
 
         <div class="add-button">
             <router-link to="/new">
-                <button class="btn btn-primary">Добавить новое правило</button>
+                <PrimaryButton>Добавить новое правило</PrimaryButton>
             </router-link>
         </div>
     </div>
@@ -13,11 +13,13 @@
 
 <script>
 import List from "./../components/List.vue";
+import PrimaryButton from "./../components/ui/PrimaryButton";
 
 export default {
     name: "Index",
     components: {
         List,
+        PrimaryButton
     },
 };
 </script>

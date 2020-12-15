@@ -14,20 +14,12 @@
                 <span>{{ item.name }}</span>
                 <div class="text-right">
                     <template v-if="!voted[index]">
-                        <button
-                            :disabled="block"
-                            @click="like(item, index)"
-                            class="btn btn-primary"
-                        >
+                        <PrimaryButton :disabled="block" @click="like(item, index)">
                             Like
-                        </button>
-                        <button
-                            :disabled="block"
-                            @click="dislike(item, index)"
-                            class="btn btn-primary"
-                        >
+                        </PrimaryButton>
+                        <PrimaryButton :disabled="block" @click="dislike(item, index)">
                             Dislike
-                        </button>
+                        </PrimaryButton>
                     </template>
                     <template v-else>
                         Голос учтен
@@ -39,11 +31,12 @@
 </template>
 
 <script>
+import PrimaryButton from "../components/ui/PrimaryButton";
 import ItemsApi from "./../api/items";
 
 export default {
     name: "Vote",
-    components: {},
+    components: {PrimaryButton},
     data() {
         return {
             randomList: Array,

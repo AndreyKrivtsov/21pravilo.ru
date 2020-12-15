@@ -2,23 +2,27 @@
     <div class="new">
         <h3 class="mt-4">Добавьте новое правило</h3>
         <div class="new-input">
-            <input
+            <BaseInput
                 v-model="name"
-                class="input"
                 type="text"
                 placeholder="Добавьте новое правило"
             />
-            <button @click="save()" class="btn btn-primary">Добавить</button>
+            <PrimaryButton @click="save()">Добавить</PrimaryButton>
         </div>
     </div>
 </template>
 
 <script>
 import ApiItems from "./../api/items";
+import BaseInput from "../components/ui/BaseInput"
+import PrimaryButton from "../components/ui/PrimaryButton"
 
 export default {
     name: "New",
-    components: {},
+    components: {
+        BaseInput,
+        PrimaryButton
+    },
 
     data() {
         return {

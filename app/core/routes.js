@@ -1,5 +1,6 @@
 import express from 'express'
 import ItemController from '../controllers/ItemConroller.js'
+import testController from '../controllers/testController.js'
 
 import cacheAdapter from './cacheAdapter.js'
 let cache = new cacheAdapter()
@@ -11,6 +12,11 @@ router.use(function timeLog(req, res, next) {
     console.log('[router] Time: ', Date.now(), ' Path: ', req.path);
     next();
 });
+
+router.get('/test', (req, res) => {
+    new testController().test()
+        .then(result => res.json(result))
+})
 
 router.get('/items', (req, res) => {
     new ItemController().actionGetItems()

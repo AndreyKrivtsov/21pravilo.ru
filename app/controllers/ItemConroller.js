@@ -58,7 +58,7 @@ class ItemController {
     }
 
     async actionLikeItem(data) {
-        if (data.token) {
+        if (data?.token) {
             let token = data.token
             let id = data.id
 
@@ -87,7 +87,7 @@ class ItemController {
     }
 
     async actionDislikeItem(data) {
-        if (data.token) {
+        if (data?.token) {
             let token = data.token
             let id = data.id
 
