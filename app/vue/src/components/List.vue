@@ -1,12 +1,13 @@
 <template>
-    <div class="mt-4">
-        <div v-for="(item, i) in voteList" :key="item" class="list">
-            <h4 class="d-inline m-0 p-0">
-                <span class="badge badge-secondary mr-3">{{ i + 1 }}</span>
-                <span class="cursive">{{ item.name }}</span>
-            </h4>
-            <hr class="mt-2 mb-0">
-            <div class="text-right">
+    <div class="list">
+        <div v-for="(item, i) in voteList" :key="item" class="list-item">
+            <div class="list-item__position">
+                <h4 class="list-item__h4">{{ i + 1 }}</h4>
+            </div>
+            <div class="list-item__content">
+                <h4 class="list-item__h4">{{ item.name }}</h4>
+            </div>
+            <div class="list-item__additional">
                 <span class="mr-1">Лайков: {{ item.likes }}</span> |
                 <span class="mr-1">Дизлайков: {{ item.dislikes }}</span> |
                 <span class="mr-1">Показов: {{ item.shows }}</span>
@@ -16,40 +17,69 @@
 </template>
 
 <script>
-import ApiItems from "./../api/items.js";
+import ApiItems from './../api/items.js'
 
 export default {
-    name: "List",
+    name: 'List',
 
     components: {},
 
     data() {
         return {
             voteList: [],
-        };
+        }
     },
 
     methods: {
         getVoteList() {
-            ApiItems.getTopItems().then((data) => {
-                this.voteList = data;
-            });
+            ApiItems.getTopItems().then(data => {
+                this.voteList = data
+            })
         },
     },
 
     mounted() {
-        this.getVoteList();
+        this.getVoteList()
     },
-};
+}
 </script>
 
 <style lang="scss" scoped>
 .list {
-    text-align: left;
-    padding: 30px 20px 10px 20px;
-}
+    //text-align: left;
+    //padding: 30px 20px 10px 20px;
+    margin-top: 50px;
 
-.cursive {
-    font-family: cursive;
+    .list-item {
+        display: flex;
+        align-items: flex-start;
+        border: 1px solid rgb(212, 212, 212);
+        margin-top: 20px;
+        padding: 20px;
+        box-shadow: 10px 2px 4px #eee;
+
+        .list-item__position {
+            color: #ccc;
+            font-weight: 900;
+            margin: 0 20px 0 0;
+        }
+
+        .list-item__content {
+            flex-grow: 1;
+            text-align: left;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+
+        .list-item__additional {
+            text-align: right;
+            min-width: 350px;
+        }
+
+        .list-item__h4 {
+            margin: 0;
+            padding: 0;
+        }
+    }
 }
 </style>

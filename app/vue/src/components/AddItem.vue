@@ -1,18 +1,15 @@
 <template>
-    <div>
-
-    </div>
+    <div></div>
 </template>
 
 <script>
-import ApiItems from "./../../api/items.js";
+import ApiItems from './../../api/items.js'
 
 export default {
-    name: "NewItem",
+    name: 'NewItem',
 
     components: {},
-
-};
+}
 </script>
 
 <style>

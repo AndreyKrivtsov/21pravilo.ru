@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: "BaseInput",
+    name: 'BaseInput',
     props: {
         modelValue: {
             type: String,
@@ -23,18 +23,33 @@ export default {
             type: String,
             required: false,
         },
+        max: {
+            type: Number,
+            required: false,
+        },
     },
     computed: {
         input: {
-            get: function () {
-                return this.modelValue;
+            get: function() {
+                return this.modelValue
             },
-            set: function (value) {
+            set: function(value) {
                 this.$emit('update:modelValue', value)
             },
         },
     },
-};
+    watch: {
+        input(newValue, oldValue) {
+            if (this.max) {
+                if (newValue.length > this.max) {
+                    this.$nextTick(() => {
+                        this.input = oldValue
+                    })
+                }
+            }
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -42,5 +57,9 @@ export default {
     display: inline;
     width: 300px;
     border-radius: 0;
+
+    &:focus {
+        box-shadow: none;
+    }
 }
 </style>

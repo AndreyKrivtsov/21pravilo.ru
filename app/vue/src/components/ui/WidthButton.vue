@@ -1,24 +1,23 @@
 <template>
     <BaseButton :disabled="disabled" class="width-button">
-        <slot>
-        </slot>
+        <slot> </slot>
     </BaseButton>
 </template>
 
 <script>
-import BaseButton from "./BaseButton";
+import BaseButton from './BaseButton'
 
 export default {
-    name: "WidthButton",
+    name: 'WidthButton',
     components: {
-        BaseButton
+        BaseButton,
     },
     props: {
         disabled: {
             require: false,
-            type: Boolean
-        }
-    }
+            type: Boolean,
+        },
+    },
 }
 </script>
 

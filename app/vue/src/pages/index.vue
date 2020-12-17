@@ -1,27 +1,24 @@
 <template>
     <div>
-        
         <List />
 
         <div class="add-button">
-            <router-link to="/new">
-                <PrimaryButton>Добавить новое правило</PrimaryButton>
-            </router-link>
+            <PrimaryButton @click="$router.push('New')">Добавить новое правило</PrimaryButton>
         </div>
     </div>
 </template>
 
 <script>
-import List from "./../components/List.vue";
-import PrimaryButton from "./../components/ui/PrimaryButton";
+import List from './../components/List.vue'
+import PrimaryButton from './../components/ui/PrimaryButton'
 
 export default {
-    name: "Index",
+    name: 'Index',
     components: {
         List,
-        PrimaryButton
+        PrimaryButton,
     },
-};
+}
 </script>
 
 <style lang="scss" scoped>

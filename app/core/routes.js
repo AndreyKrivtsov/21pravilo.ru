@@ -1,6 +1,5 @@
 import express from 'express'
 import ItemController from '../controllers/ItemConroller.js'
-import testController from '../controllers/testController.js'
 
 import cacheAdapter from './cacheAdapter.js'
 let cache = new cacheAdapter()

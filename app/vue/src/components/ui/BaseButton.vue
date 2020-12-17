@@ -1,7 +1,6 @@
 <template>
     <button :disabled="disabled" class="base-button btn btn-primary">
-        <slot>
-        </slot>
+        <slot> </slot>
     </button>
 </template>
 
@@ -11,9 +10,9 @@ export default {
     props: {
         disabled: {
             require: false,
-            type: Boolean
-        }
-    }
+            type: Boolean,
+        },
+    },
 }
 </script>
 
@@ -23,7 +22,7 @@ export default {
     border: none;
     border-radius: 0;
     background-color: var(--primary);
-    color: #EEE;
+    color: #eee;
 
     &:active {
         background-color: var(--primary) !important;
@@ -47,7 +46,7 @@ export default {
     }
 
     &:disabled {
-        background-color: #DDD;
+        background-color: #ddd;
         color: #999;
     }
 }
