@@ -12,6 +12,11 @@ router.use(function timeLog(req, res, next) {
     next();
 });
 
+router.get('/test', (req, res) => {
+    new testController().test()
+        .then(result => res.json(result))
+})
+
 router.get('/items', (req, res) => {
     new ItemController().actionGetItems()
         .then(result => res.json(result))

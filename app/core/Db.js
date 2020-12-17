@@ -2,7 +2,16 @@ import Mongo from 'mongodb'
 
 let instance = null
 
+/**
+ * Класс Db
+ */
 class Db {
+
+    /**
+    * @constructor
+    *
+    * @return {Db} Возвращает свой экземпляр
+    */
     constructor() {
         if (instance) {
             return instance
@@ -14,13 +23,21 @@ class Db {
         instance = this
     }
 
-    connect(client) {
+    /**
+    * Подключение к базе данных
+    *
+    * @param  {Object} client - импортированный объект базы данных
+    */
+    async connect(client) {
         if (!this.statusConnect) {
-            client.connect('mongodb://127.0.0.1:27017/', {
+            await client.connect('mongodb://127.0.0.1:27017/', {
                 useNewUrlParser: true,
+                useUnifiedTopology: true,
                 //auth: {username: "root", password: "root"},
-              }, (err, db) => {
+              },
+              (err, db) => {
                 if (err) {
+                    console.log('[mongodb]')
                     throw err
                 }
                 console.log('[mongodb] Connected to MongoDb')

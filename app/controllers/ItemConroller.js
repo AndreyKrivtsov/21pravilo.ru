@@ -2,13 +2,16 @@ import Items from '../models/Items.js'
 import cacheAdapter from '../core/cacheAdapter.js'
 import settings from '../core/settings.js'
 
+
+/**
+ * Класс ItemController
+ */
 class ItemController {
 
     /**
     * Создает экземпляр ItemController.
     *
     * @constructor
-    * @this  {ItemController}
     */
     constructor() {
         this.cache = new cacheAdapter()
@@ -19,8 +22,6 @@ class ItemController {
     /**
     * Получение элементов
     *
-    * @this   {ItemController}
-    * @param  {number} d - Диаметр окружности.
     * @return {Array} Массив элементов
     */
     async actionGetItems() {
@@ -30,18 +31,27 @@ class ItemController {
     }
 
     /**
-    * Получение элементов
+    * Добавление элемента
     *
-    * @this   {ItemController}
-    * @param  {object} data - 
-    * @return {Array} Массив элементов
+    * @param  {object} data - элемент с клиента
+    * @return {array|object} Массив элементов, или объект с ошибкой
     */
     async actionSetItem(data) {
         let item = new Items()
-        let res = await item.setItem(data)
-        return res
+
+        if (data.name.length <= item.MAX_LENGTH) {
+            let result = await item.setItem(data)
+            return result
+        }
+
+        return { error: `Укоротите текст. Максимум: ${item.MAX_LENGTH} символов` }
     }
 
+    /**
+    * Добавление элемента
+    *
+    * @return {Object} Массив элементов
+    */
     async actionGetVoteItems() {
         // Сделать нормальный криптостойкий идентификатор
         //let uuid = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace( /[xy]/g, (c,r) => ('x'==с?(r=Math.random()*16|0):(r&0x3|0x8)).toString(16))
@@ -57,8 +67,14 @@ class ItemController {
         return { items: list, token: token, timeout: this.timeoutForVote }
     }
 
+    /**
+    * Добавление лайка
+    *
+    * @param  {object} data - данные с клиента
+    * @return {Array} Массив элементов
+    */
     async actionLikeItem(data) {
-        if (data.token) {
+        if (data?.token) {
             let token = data.token
             let id = data.id
 
@@ -86,8 +102,14 @@ class ItemController {
         }
     }
 
+    /**
+    * Добавление дислайка
+    *
+    * @param  {object} data - данные с клиента
+    * @return {Array} Массив элементов
+    */
     async actionDislikeItem(data) {
-        if (data.token) {
+        if (data?.token) {
             let token = data.token
             let id = data.id
 
@@ -115,6 +137,11 @@ class ItemController {
         }
     }
 
+    /**
+    * Генерация токена
+    *
+    * @return {String} Токен
+    */
     token() {
         return Date.now()
     }

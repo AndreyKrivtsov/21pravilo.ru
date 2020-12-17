@@ -1,38 +1,56 @@
 <template>
     <div class="header">
-        <div class="header-image">
-            <div class="header-image-title">Это главный текст</div>
-        </div>
-        <!-- <img src="./../assets/picture.jpg" /> -->
-
-        <router-link to="/vote">
-            <button class="btn header-btn btn-primary">
-                ПРИНЯТЬ УЧАСТИЕ В ГОЛОСОВАНИИ
-            </button>
-        </router-link>
+        <PrimaryButton class="header-vote" @click="$router.push('Vote')">
+            ПРИНЯТЬ УЧАСТИЕ В ГОЛОСОВАНИИ
+        </PrimaryButton>
+        <div class="header-login" @click="openModal()">Вход</div>
     </div>
 </template>
 
-<style lang="scss" scoped>
-.header {
-    .header-image {
-        background-image: linear-gradient( rgba(42, 66, 75, 0.6), rgba(42, 66, 75, 0.6) ), url("./../assets/picture.jpg");
-        background-attachment: fixed;
-        background-position-y: 65%;
-        width: 100%;
-        height: 200px;
-        
-        .header-image-title {
-            padding-top: 60px;
-            font-size: 3rem;
-            color: #EEE;
-            text-transform: uppercase;
+<script>
+import PrimaryButton from './ui/PrimaryButton.vue'
+import ModalState from '../state/modalState'
+
+export default {
+    name: 'Header',
+    components: {
+        PrimaryButton,
+    },
+    methods: {
+        openModal() {
+            ModalState.open()
         }
     }
+}
+</script>
 
-    .header-btn {
-        width: 100%;
-        border-radius: 0;
+<style lang="scss" scoped>
+.header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 60px;
+    padding-left: 100px;
+    padding-right: 100px;
+    border-bottom: 1px solid rgb(172, 172, 172);
+    text-align: center;
+
+    .header-vote {
+        position: absolute;
+        margin: auto;
+        z-index: 5;
+    }
+
+    .header-login {
+        display: inline-block;
+        margin-left: auto;
+        cursor: pointer;
+
+        &:hover {
+            color: rgb(22, 48, 190)
+        }
     }
 }
 </style>
