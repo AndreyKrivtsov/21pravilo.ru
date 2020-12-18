@@ -1,12 +1,8 @@
 <template>
     <div class="list">
         <div v-for="(item, i) in voteList" :key="item" class="list-item">
-            <div class="list-item__position">
-                <h4 class="list-item__h4">{{ i + 1 }}</h4>
-            </div>
-            <div class="list-item__content">
-                <h4 class="list-item__h4">{{ item.name }}</h4>
-            </div>
+            <div class="list-item__position">{{ i + 1 }}</div>
+            <div class="list-item__content">{{ item.name }}</div>
             <div class="list-item__additional">
                 <span class="mr-1">Лайков: {{ item.likes }}</span> |
                 <span class="mr-1">Дизлайков: {{ item.dislikes }}</span> |
@@ -46,21 +42,16 @@ export default {
 
 <style lang="scss" scoped>
 .list {
-    //text-align: left;
-    //padding: 30px 20px 10px 20px;
-    margin-top: 50px;
-
     .list-item {
         display: flex;
-        align-items: flex-start;
-        border: 1px solid rgb(212, 212, 212);
+        border: 1px solid var(--border);
         margin-top: 20px;
         padding: 20px;
-        box-shadow: 10px 2px 4px #eee;
+        box-shadow: 2px 2px 4px #eee;
 
         .list-item__position {
             color: #ccc;
-            font-weight: 900;
+            font-weight: 500;
             margin: 0 20px 0 0;
         }
 
@@ -74,11 +65,6 @@ export default {
         .list-item__additional {
             text-align: right;
             min-width: 350px;
-        }
-
-        .list-item__h4 {
-            margin: 0;
-            padding: 0;
         }
     }
 }

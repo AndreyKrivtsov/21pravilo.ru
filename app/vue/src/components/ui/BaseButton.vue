@@ -1,5 +1,5 @@
 <template>
-    <button :disabled="disabled" class="base-button btn btn-primary">
+    <button :disabled="disabled" class="base-button">
         <slot> </slot>
     </button>
 </template>
@@ -20,29 +20,21 @@ export default {
 .base-button {
     padding: 8px;
     border: none;
-    border-radius: 0;
+    border-radius: 0.2rem;
     background-color: var(--primary);
     color: #eee;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 2px #333;
+    }
 
     &:active {
-        background-color: var(--primary) !important;
-        border-radius: 0;
+        box-shadow: 0 0 4px #333;
     }
 
     &:focus {
-        border: none;
         outline: none;
-        background-color: var(--primary);
-        box-shadow: none;
-    }
-
-    &:active:focus {
-        box-shadow: none !important;
-    }
-
-    &:hover {
-        background-color: var(--primary);
-        box-shadow: 0 0 4px #333;
     }
 
     &:disabled {

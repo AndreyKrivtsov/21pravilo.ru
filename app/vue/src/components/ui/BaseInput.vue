@@ -54,12 +54,15 @@ export default {
 
 <style lang="scss" scoped>
 .base-input {
-    display: inline;
     width: 300px;
-    border-radius: 0;
+    padding: 7px;
+    border: 1px solid var(--border);
+    border-radius: 0.2rem;
 
     &:focus {
-        box-shadow: none;
+        outline: none;
+        border: 2px solid var(--primary);
+        padding: 6px;
     }
 }
 </style>

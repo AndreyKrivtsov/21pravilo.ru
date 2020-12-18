@@ -1,23 +1,31 @@
 <template>
-    <div>
-        <h3 class="mt-4">{{ randomList.length }} случайных правил</h3>
+    <div class="vote">
+        <h3>{{ randomList.length }} случайных правил</h3>
 
-        <div class="message-wrapper">
-            <div class="message" v-if="timerMs > 0">
-                Вы можете голосовать через
-                <b>{{ timerMs / 1000 }}</b> секунд
+        <div class="vote-message-wrapper">
+            <div class="vote-message" :class="{ 'vote-message_green': timerMs === 0 }">
+                Вы можете голосовать 
+                <template v-if="timerMs > 0">через <b>{{ timerMs / 1000 }}</b> секунд</template>
             </div>
         </div>
 
-        <div>
-            <div v-for="(item, index) in randomList" :key="index" class="list">
-                <span>{{ item.name }}</span>
-                <div class="text-right">
+        <div class="vote-list">
+            <div v-for="(item, index) in randomList" :key="index" class="vote-list__item">
+                <span class="vote-list__item-content">{{ item.name }}</span>
+                <div class="vote-list__item-actions">
                     <template v-if="!voted[index]">
-                        <PrimaryButton :disabled="block" @click="like(item, index)">
+                        <PrimaryButton
+                            class="vote-list__item-button"
+                            :disabled="block"
+                            @click="like(item, index)"
+                        >
                             Like
                         </PrimaryButton>
-                        <PrimaryButton :disabled="block" @click="dislike(item, index)">
+                        <PrimaryButton
+                            class="vote-list__item-button"
+                            :disabled="block"
+                            @click="dislike(item, index)"
+                        >
                             Dislike
                         </PrimaryButton>
                     </template>
@@ -31,12 +39,12 @@
 </template>
 
 <script>
-import PrimaryButton from "../components/ui/PrimaryButton";
-import ItemsApi from "./../api/items";
+import PrimaryButton from '../components/ui/PrimaryButton'
+import ItemsApi from './../api/items'
 
 export default {
-    name: "Vote",
-    components: {PrimaryButton},
+    name: 'Vote',
+    components: { PrimaryButton },
     data() {
         return {
             randomList: Array,
@@ -44,61 +52,90 @@ export default {
             timerMs: 0,
             block: true,
             voted: [],
-        };
+        }
     },
     methods: {
         like(item, index) {
-            this.voted[index] = true;
-            ItemsApi.setLike({ id: item._id, token: this.token });
+            this.voted[index] = true
+            ItemsApi.setLike({ id: item._id, token: this.token })
         },
 
         dislike(item, index) {
-            this.voted[index] = true;
-            ItemsApi.setDislike({ id: item._id, token: this.token });
+            this.voted[index] = true
+            ItemsApi.setDislike({ id: item._id, token: this.token })
         },
 
         getVoteItems() {
-            ItemsApi.getVoteItems().then((data) => {
-                this.randomList = data.items;
-                this.token = data.token;
-                this.runTimeout(data.timeout);
-            });
+            ItemsApi.getVoteItems().then(data => {
+                this.randomList = data.items
+                this.token = data.token
+                this.runTimeout(data.timeout)
+            })
         },
 
         runTimeout(timeout) {
-            this.timerMs -= 1000;
-            this.timerMs = timeout;
+            this.timerMs -= 1000
+            this.timerMs = timeout
             let interval = setInterval(() => {
                 if (this.timerMs > 1000) {
-                    this.timerMs -= 1000;
+                    this.timerMs -= 1000
                 } else {
-                    this.timerMs = 0;
-                    this.block = false;
-                    clearInterval(interval);
+                    this.timerMs = 0
+                    this.block = false
+                    clearInterval(interval)
                 }
-            }, 1000);
+            }, 1000)
         },
     },
     mounted() {
-        this.getVoteItems();
+        this.getVoteItems()
     },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-.list {
-    text-align: left;
-    padding: 20px;
-}
+.vote {
+    .vote-list {
+        .vote-list__item {
+            display: flex;
+            align-items: center;
+            height: 60px;
+            padding: 0 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 2px 2px 4px #eee;
 
-.message-wrapper {
-    height: 30px;
+            .vote-list__item-content {
+                flex-grow: 1;
+                text-align: left;
+                word-wrap: break-word;
+                overflow: hidden;
+            }
 
-    .message {
-        padding: 5px;
-        width: 100%;
-        height: 100%;
-        background-color: #eee;
+            .vote-list__item-actions {
+                min-width: 200px;
+                text-align: right;
+            }
+
+            .vote-list__item-button {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .vote-message-wrapper {
+        height: 30px;
+        margin-bottom: 20px;
+
+        .vote-message {
+            display: inline-block;
+            padding: 5px;
+            background-color: #eee;
+        }
+
+        .vote-message_green {
+            background-color: rgb(123, 216, 132);
+        }
     }
 }
 </style>
