@@ -1,17 +1,16 @@
 <template>
     <div class="new">
-        <h3 class="mt-4">Добавьте новое правило</h3>
+        <h3>Добавьте новое правило</h3>
         <div class="new-input">
             <NewItemInput v-model="name" />
             <PrimaryButton @click="save()">Добавить</PrimaryButton>
         </div>
-        Длина: {{ name.length }} (Максимум: 200)
     </div>
 </template>
 
 <script>
 import ApiItems from './../api/items'
-import NewItemInput from '../components/NewItemInput'
+import NewItemInput from '../components/ui/NewItemInput'
 import PrimaryButton from '../components/ui/PrimaryButton'
 
 export default {

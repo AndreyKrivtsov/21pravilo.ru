@@ -2,9 +2,11 @@
     <div>
         <Modal />
         <Header />
-        <div class="content">
-            <router-view></router-view>
-        </div>
+        <main class="content-wrapper">
+            <div class="content">
+                <router-view></router-view>
+            </div>
+        </main>
         <Footer />
     </div>
 </template>
@@ -19,7 +21,7 @@ export default {
     components: {
         Header,
         Footer,
-        Modal
+        Modal,
     },
 }
 </script>
@@ -31,12 +33,17 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: var(--colorText);
+    overflow-x: hidden;
 
-    .content {
-        max-width: 1280px;
-        margin: auto;
-        overflow: hidden;
+    .content-wrapper {
+        width: 100vw;
+        height: 100%;
+
+        .content {
+            max-width: 1280px;
+            margin: auto;
+        }
     }
 }
 </style>
